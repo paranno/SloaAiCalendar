@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "879825227557",
+    "project_id": "sloaserver",
+    "storage_bucket": "sloaserver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879825227557:android:d840c798df785d4ce894cc",
+        "android_client_info": {
+          "package_name": "com.example.sloaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879825227557-domsd6itclf027u7dhtj70icsm9m948f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sloaapp",
+            "certificate_hash": "e6c28b9be1aba5dafa70d1b0e004d87015459533"
+          }
+        },
+        {
+          "client_id": "879825227557-go53up60m131smb5o66k7s3mp21tun1d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-BPME0c-ei1peoxaxFDK2KiQIxAVCDoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879825227557-go53up60m131smb5o66k7s3mp21tun1d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

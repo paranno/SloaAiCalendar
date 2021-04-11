@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="left"
+    tools:context=".SignUpInsertProfileActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:textSize="25dp"
+            android:textColor="@color/colorBlack"
+            android:text="@string/signin_insert_profile"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/go_back_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/back_arrow" />
+    </LinearLayout>
+    <!-- 상단바 -->
+    <LinearLayout
+        android:id="@+id/signin_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:src="@drawable/logo_title"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp">
+
+            <EditText
+                android:id="@+id/signup_email_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp">
+
+            <EditText
+                android:id="@+id/signup_password_check_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nickname"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp">
+            <Spinner
+
+                android:layout_width="161dp"
+                android:layout_height="match_parent" />
+            <Spinner
+                android:layout_width="161dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/goto_calendar_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="45dp"
+            android:text="@string/next"
+            android:theme="@style/RedButtonStyle" />
+
+
+    </LinearLayout>
+</RelativeLayout>
