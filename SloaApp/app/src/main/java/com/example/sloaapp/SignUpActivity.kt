@@ -10,17 +10,16 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_signup.*
-
 import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -110,7 +109,7 @@ class SignUpActivity : AppCompatActivity() {
                     task ->
                     if(task.isSuccessful){
                         //Login
-                        judgeUserAndGoNextPage(task.result?.user)
+                        judgeUserAndGoMainPage(task.result?.user)
                     }else{
                         //Show the error message
                         Toast.makeText(this,task.exception?.message, Toast.LENGTH_LONG).show()
@@ -121,27 +120,31 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        callbackManager?.onActivityResult(requestCode,resultCode,data)
-        if(requestCode == GOOGLE_LOGIN_CODE){
-            var result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            if(result!!.isSuccess){
-                var account = result!!.signInAccount
-                //Second step
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == GOOGLE_LOGIN_CODE) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)!!
+                Toast.makeText(this, "구글 로그인 성공 | " + account.id, Toast.LENGTH_LONG).show()
                 firebaseAuthWithGoogle(account)
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
+                Toast.makeText(this, "구글 로그인 실패 | " + e, Toast.LENGTH_LONG).show()
             }
         }
     }
     fun firebaseAuthWithGoogle(account : GoogleSignInAccount?){
         var credential = GoogleAuthProvider.getCredential(account?.idToken,null)
         auth?.signInWithCredential(credential)
-                ?.addOnCompleteListener {
-                    task ->
+                ?.addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         //Login
-                        judgeUserAndGoNextPage(task.result?.user)
+                        judgeUserAndGoMainPage(task.result?.user)
                     }else{
                         //Show the error message
-                        Toast.makeText(this,task.exception?.message, Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,task.exception?.message,Toast.LENGTH_LONG).show()
                     }
                 }
     }
@@ -164,9 +167,15 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
-    fun judgeUserAndGoNextPage(user: FirebaseUser?){ //SNS로그인 시 USER유효성 판단하고 캘린더 액티비티로 전환한다.
+    fun judgeUserAndGoNextPage(user: FirebaseUser?){ //이메일 회원가입 시 USER유효성 판단하고 본인인증 액티비티로 전환한다.
         if(user != null){
             startActivity(Intent(this,IdentityVerificationActivity::class.java)) // 가입입력정보에 문제가 없으면 본인인증 액티비티로 이동한다.
+            finish()
+        }
+    }
+    fun judgeUserAndGoMainPage(user: FirebaseUser?){ //SNS로그인 시 USER유효성 판단하고 캘린더 액티비티로 전환한다.
+        if(user != null){
+            startActivity(Intent(this,MonthCalendarActivity::class.java)) // USER유효성에 문제가 없으면 캘린더 액티비티로 이동한다.
             finish()
         }
     }

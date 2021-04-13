@@ -42,8 +42,6 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signin)
         auth = FirebaseAuth.getInstance() //파이어베이스 인증 관리 인스턴스를 얻는다.
 
-
-
         email_login_button.setOnClickListener { //시작하기 버튼
             signInEmail()
         }
