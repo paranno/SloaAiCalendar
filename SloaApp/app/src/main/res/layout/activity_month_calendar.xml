@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,4 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/cal"/>
+
+    <Button
+        android:id="@+id/move_goal_module"
+        android:layout_width="393dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:text="목표 관리 모듈 이동"
+        android:textColor="#ffffff"
+        android:background="#1E90FF"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
